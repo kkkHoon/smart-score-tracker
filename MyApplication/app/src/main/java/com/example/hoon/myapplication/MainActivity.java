@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void GoSingleMode(View view) //TODO
     {
-        Intent intent = new Intent(this, individual_counter.class);
+        Intent intent = new Intent(this, individual_scoreboard.class);
         startActivity(intent);
     }
 
