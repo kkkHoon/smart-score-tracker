@@ -57,12 +57,30 @@
             android:orientation="horizontal"
             android:layout_marginTop = "10dip">
 
+            <Button
+                android:layout_width="80dip"
+                android:layout_height="60dip"
+                android:text="잘 쳤다!"
+                android:id="@+id/plus_point"/>
+
+            <Button
+                android:layout_width="80dip"
+                android:layout_height="60dip"
+                android:text="못 쳤다!"
+                android:id="@+id/plus_zero"/>
+
+            <Button
+                android:layout_width="80dip"
+                android:layout_height="60dip"
+                android:text="패널티!"
+                android:id="@+id/minus_point"/>
+
             <ImageButton
                 android:layout_width="60dip"
                 android:layout_height="60dip"
                 android:scaleType="centerCrop"
                 android:background = "@drawable/preview"
-                android:layout_marginLeft="350dip"
+                android:layout_marginLeft="110dip"
                 />
 
             <ImageButton

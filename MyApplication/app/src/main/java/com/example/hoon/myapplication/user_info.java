@@ -11,6 +11,8 @@ public class user_info {
     private String user_name;
     private int user_score;
     private int user_max_score;
+    private boolean end = false;
+    private boolean turn = false;
     //private Drawable icon;
 
     public user_info() {
@@ -37,5 +39,29 @@ public class user_info {
     }
     public void setMaxScore(int score) {
         user_max_score = score;
+    }
+
+    public void plusScore() {
+        if(!end) {
+            user_score += 1;
+            if (user_max_score == user_score)
+                end = true;
+        }
+    }
+    public void minusScore() {
+        if(!end)
+            user_score -= 1;
+    }
+
+    public boolean isEnd() { return end; }
+
+    public void setTurn(boolean temp){
+        if(turn != temp){
+            turn = temp;
+        }
+    }
+
+    public boolean getTurn() {
+        return turn;
     }
 }
