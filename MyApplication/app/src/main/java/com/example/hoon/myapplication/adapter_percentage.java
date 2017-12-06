@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -32,19 +33,22 @@ public class adapter_percentage extends BaseAdapter{
     Drawable waiting;
     Drawable playing;
 
-    /*
+
     private ImageButton.OnClickListener btn_listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (parent != null)
             {
                 Intent intent = new Intent(parent, user_info_view.class);
-                intent.putExtra("position",position);
-                parent.startActivity(intent);
+                int position = item_list.indexOf(view);
+                Log.d("ccc","position = " +position); // position return -1... maybe parameter view is not stored view. just inflated before
+                try {
+                    intent.putExtra("user_info", data_list.getUser(position));
+                    parent.startActivity(intent);
+                }catch (Exception e){e.printStackTrace();}
             }
         }
     };
-*/
     public adapter_percentage() {
         this.data_list = new users_info();
         this.item_list = new ArrayList<>();
@@ -88,20 +92,24 @@ public class adapter_percentage extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup) {
         Log.d("aaa","getView entered :: position = " +i);
 
-        if(item_list.size() > i) {
+        if(item_list.size() > i) {  // 그 이후에 다시 getView()가 call될 때는 미리 저장해놓은 view를 재활용.
             try {
                 update_view(item_list.get(i), i);
             }catch (Exception e) {e.printStackTrace();}
             return item_list.get(i);
         }
-        else {
+        else {  // 맨 처음에 각 item view를 inflate할 때 한번 씩 불려지고
             final Context context = viewGroup.getContext();
-            if (view == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater.inflate(R.layout.mode_percentage, viewGroup, false);
-            }
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.mode_percentage, viewGroup, false);
 
             try {
+                Log.d("bbb","Max score(" +i +") = " +data_list.getUser(i).getMaxScore());
+                data_list.getUser(i).setMyView(view);
+                if(data_list.getUser(i).getTurn())  //처음 item view를 inflate할 때 지금 순서인 player는 view loading과 동시에 개인 타이머 작동
+                    data_list.getUser(i).startTimer();
+                ImageButton imageButton = (ImageButton)view.findViewById(R.id.user_info);
+                imageButton.setOnClickListener(btn_listener);
                 update_view(view, i);
             }catch (Exception e) {e.printStackTrace();}
             item_list.add(i,view);

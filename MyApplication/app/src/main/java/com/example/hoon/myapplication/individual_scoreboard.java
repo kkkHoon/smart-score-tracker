@@ -39,12 +39,16 @@ public class individual_scoreboard extends AppCompatActivity {
 
         user_info temp1 = new user_info();
         temp1.setMaxScore(20);
+        temp1.setName("KIM");
         user_info temp2 = new user_info();
         temp2.setMaxScore(5);
+        temp2.setName("LEE");
         user_info temp3 = new user_info();
         temp3.setMaxScore(10);
+        temp3.setName("AHN");
         user_info temp4 = new user_info();
-        temp4.setMaxScore(10);
+        temp4.setMaxScore(15);
+        temp4.setName("YOU");
 
         test.addUser(temp1);
         test.addUser(temp2);

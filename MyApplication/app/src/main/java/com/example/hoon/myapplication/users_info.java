@@ -29,6 +29,7 @@ public class users_info implements Parcelable {
         if(order_list.size() == 0) {
             player = user;
             player.setTurn(true);
+            //player.startTimer();  //It does not work for first player TT
         }
         user_list.add(user);
         order_list.add(user);
@@ -63,18 +64,22 @@ public class users_info implements Parcelable {
         if (player != null) {
             Log.d("aaa","after");
             player.setTurn(false);
+            player.stopTimer();
             int position = order_list.indexOf(player);
             player = (user_info) ((length == (position + 1)) ? order_list.get(0) : order_list.get(position + 1));
             player.setTurn(true);
+            player.startTimer();
         }
     }
 
     public void prevOrder() {
         if (player != null) {
             player.setTurn(false);
+            player.stopTimer();
             int position = order_list.indexOf(player);
             player = (user_info) ((position == 0) ? order_list.get(length - 1) : order_list.indexOf(position - 1));
             player.setTurn(true);
+            player.startTimer();
         }
     }
 
