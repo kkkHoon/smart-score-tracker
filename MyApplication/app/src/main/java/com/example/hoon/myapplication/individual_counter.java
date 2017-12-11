@@ -1,10 +1,12 @@
 package com.example.hoon.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +17,21 @@ import android.widget.Toast;
 public class individual_counter extends AppCompatActivity {
 
     TextView num_count;
+    Button next_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_counter);
         num_count = (TextView)findViewById(R.id.counter);
+        next_btn = (Button)findViewById(R.id.next_btn);
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), individual_scoreboard.class);
+                intent.putExtra("count",Integer.parseInt(num_count.getText().toString()));
+                startActivity(intent);
+            }
+        });
     }
 
     public void ShowHelper(View view)   //TODO

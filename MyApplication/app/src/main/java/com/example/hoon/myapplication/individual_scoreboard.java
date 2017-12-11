@@ -1,5 +1,6 @@
 package com.example.hoon.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,26 +35,41 @@ public class individual_scoreboard extends AppCompatActivity {
         timerText = (TextView)findViewById(R.id.timer_text);
         fragment_in_view = (fragment_scoreboard)getFragmentManager().findFragmentById(R.id.container);
 
+        Intent intent = getIntent();
+        int count = intent.getIntExtra("count",1);
+
         //temporary test inpt data
         test = new users_info();
+        user_info[] test_case = new user_info[6];
 
         user_info temp1 = new user_info();
         temp1.setMaxScore(20);
         temp1.setName("KIM");
+        test_case[0] = temp1;
         user_info temp2 = new user_info();
         temp2.setMaxScore(5);
         temp2.setName("LEE");
+        test_case[1] = temp2;
         user_info temp3 = new user_info();
         temp3.setMaxScore(10);
         temp3.setName("AHN");
+        test_case[2] = temp3;
         user_info temp4 = new user_info();
         temp4.setMaxScore(15);
         temp4.setName("YOU");
+        test_case[3] = temp4;
+        user_info temp5 = new user_info();
+        temp5.setMaxScore(30);
+        temp5.setName("HWANG");
+        test_case[4] = temp5;
+        user_info temp6 = new user_info();
+        temp6.setMaxScore(10);
+        temp6.setName("CHOI");
+        test_case[5] = temp6;
 
-        test.addUser(temp1);
-        test.addUser(temp2);
-        test.addUser(temp3);
-        test.addUser(temp4);
+        for(int k=0; k<count; k++){
+            test.addUser(test_case[k]);
+        }
         //temporary test input data end!
 
         fragment_in_view.setData(test);

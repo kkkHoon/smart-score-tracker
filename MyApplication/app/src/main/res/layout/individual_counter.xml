@@ -69,5 +69,13 @@
             android:background="@drawable/plus_btn"
             android:onClick="counter"/>
 
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="70dip"
+            android:layout_height="70dip"
+            android:layout_alignRight="@+id/imageButton"
+            android:layout_below="@+id/counter"
+            android:background="@drawable/next" />
+
     </RelativeLayout>
 </com.example.hoon.myapplication.default_logo>
